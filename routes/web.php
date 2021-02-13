@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name("inventaris"); 
 Route::get('pinjaman', function () {
     return view('pinjaman');
-});
+})->name("pinjaman");

@@ -10,7 +10,7 @@
 </ul>
 </div> --}}
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <a href="" class="navbar-brand">
+    <a href="/" class="navbar-brand">
         <img src="{{asset('img/logo-inventory.png')}}" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -20,11 +20,11 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item nav-active">
-                <a class="nav-link active" href="">inventaris</a>
+            <li class="nav-item  @if (Route::current()->getName() === 'inventaris') nav-active @endif">
+                <a class="nav-link   @if (Route::current()->getName() === 'inventaris') active @endif" href="/">inventaris</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="pinjaman">pinjaman</a>
+            <li class="nav-item @if (Route::current()->getName() === 'pinjaman') nav-active @endif">
+                <a class="nav-link @if (Route::current()->getName() === 'pinjaman') active @endif " href="pinjaman">pinjaman</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="">cashout</a>
