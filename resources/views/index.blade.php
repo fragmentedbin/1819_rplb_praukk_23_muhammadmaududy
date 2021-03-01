@@ -1,7 +1,10 @@
 @extends('layout/structure')
 @section('content')
 <div class="content-main">
-    <h1>Inventaris</h1>
+    <div class="title-content">
+        <h1>Inventaris</h1>
+        <span class="btn-add ml-auto p-2 justify-content-end"><a href="inv_add" class="btn btn-primary"><i class="fa fa-plus"></i></a></span>
+    </div>
     <table class="table display nowrap" style="width: 100%" id="inventaris-table">
         <thead>
             <tr>
@@ -45,12 +48,12 @@
                 <td>Baik</td>
                 <td>7</td>
             </tr>
-           
+
         </tbody>
     </table>
 </div>
 <script>
-    
+
 
 </script>
 @endsection

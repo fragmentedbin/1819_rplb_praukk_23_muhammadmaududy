@@ -30,12 +30,11 @@
                 <td>ON</td>
                 <td>PGW-2</td>
             </tr>
-           
         </tbody>
     </table>
 </div>
 <script>
-    
+
 
 </script>
 @endsection
