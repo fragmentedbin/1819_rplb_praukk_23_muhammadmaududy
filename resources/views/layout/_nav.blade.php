@@ -27,9 +27,6 @@
                 <a class="nav-link @if (Route::current()->getName() === 'pinjaman') active @endif " href="pinjaman">pinjaman</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">cashout</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="">Ruangan</a>
             </li>
             <li class="nav-item">

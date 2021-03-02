@@ -2,6 +2,12 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
+/* .page-item.active .page-link {
+    background-color: #ff2a1b;
+    border-color: #ff2a1b;
+} */
+
 .container-c {
     width: 100%;
 }
@@ -66,4 +72,14 @@ body {
 .btn-add {
     position: relative;
     right: 0;
+}
+
+.user-id {
+    color: grey;
+    font-size: 30px;
+}
+
+.form {
+    font-size: 23px;
+    font-weight: 600;
 }
