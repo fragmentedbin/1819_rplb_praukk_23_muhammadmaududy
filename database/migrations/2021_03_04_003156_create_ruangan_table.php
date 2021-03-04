@@ -15,9 +15,9 @@ class CreateRuanganTable extends Migration
     {
         Schema::create('ruangan', function (Blueprint $table) {
             $table->integer('id_ruangan', true);
-            $table->integer('nama_ruangan');
+            $table->string('nama_ruangan', 50);
             $table->integer('kode_ruangan')->unique('kode_ruangan');
-            $table->integer('keterangan_ruangan');
+            $table->string('keterangan_ruangan', 100);
         });
     }
 
