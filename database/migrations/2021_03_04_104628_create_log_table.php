@@ -15,7 +15,7 @@ class CreateLogTable extends Migration
     {
         Schema::create('log', function (Blueprint $table) {
             $table->integer('id_log', true);
-            $table->integer('id_petugas')->index('id_petugas');
+            $table->integer('id_user')->index('id_user');
             $table->integer('id_level')->index('id_level');
             $table->string('activities', 100);
             $table->time('time');

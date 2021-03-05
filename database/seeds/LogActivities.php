@@ -12,10 +12,10 @@ class LogActivities extends Seeder
     public function run()
     {
         DB::table('log')->insert([
-            'id_petugas'=>1,
+            'id_user'=>1,
             'id_level'=>1,
             'activities'=>'melakukan login',
-            'time'=>'12:01:01'
+            'time'=>date("H:i:s")
         ]);
     }
 }

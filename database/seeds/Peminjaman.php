@@ -12,7 +12,9 @@ class Peminjaman extends Seeder
     public function run()
     {
         DB::table('peminjaman')->insert([
+            'id_inventaris'=>1,
            'tanggal_peminjaman'=>'21-03-03',
+           'jumlah_pinjaman'=>20,
            'tanggal_kembali'=>'21-04-03',
            'status_peminjaman'=>'pending',
            'approval'=>1,

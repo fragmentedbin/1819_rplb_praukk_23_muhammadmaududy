@@ -22,7 +22,7 @@ class CreateInventarisTable extends Migration
             $table->integer('jumlah_inventaris');
             $table->integer('id_jenis')->index('id_jenis');
             $table->integer('id_ruang')->index('id_ruang');
-            $table->integer('id_petugas')->index('id_petugas');
+            $table->integer('id_user')->index('id_user');
         });
     }
 

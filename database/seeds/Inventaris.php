@@ -19,7 +19,7 @@ class Inventaris extends Seeder
            'tanggal_register_inventaris'=>'21-03-03',
            'id_ruang'=>1,
            'kode_inventaris'=>1,
-           'id_petugas'=>1
+           'id_user'=>1
         ]);
     }
 }

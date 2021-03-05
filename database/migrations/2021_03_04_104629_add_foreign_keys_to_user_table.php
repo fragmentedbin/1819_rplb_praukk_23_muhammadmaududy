@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeysToPetugasTable extends Migration
+class AddForeignKeysToUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddForeignKeysToPetugasTable extends Migration
      */
     public function up()
     {
-        Schema::table('petugas', function (Blueprint $table) {
-            $table->foreign('id_level', 'petugas_ibfk_1')->references('id_level')->on('level')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+        Schema::table('user', function (Blueprint $table) {
+            $table->foreign('id_level', 'user_ibfk_1')->references('id_level')->on('level')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -25,8 +25,8 @@ class AddForeignKeysToPetugasTable extends Migration
      */
     public function down()
     {
-        Schema::table('petugas', function (Blueprint $table) {
-            $table->dropForeign('petugas_ibfk_1');
+        Schema::table('user', function (Blueprint $table) {
+            $table->dropForeign('user_ibfk_1');
         });
     }
 }
