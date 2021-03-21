@@ -58,7 +58,7 @@ class PinjamanController extends Controller
      */
     public function edit(Pinjaman $pinjaman)
     {
-        //
+        // 
     }
 
     /**

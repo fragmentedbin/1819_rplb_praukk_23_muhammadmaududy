@@ -23,6 +23,7 @@ class CreateInventarisTable extends Migration
             $table->integer('id_jenis')->index('id_jenis');
             $table->integer('id_ruang')->index('id_ruang');
             $table->integer('id_user')->index('id_user');
+            $table->softDeletes();
         });
     }
 

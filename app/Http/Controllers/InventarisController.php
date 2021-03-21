@@ -16,6 +16,7 @@ class InventarisController extends Controller
     public function index()
     {
         // $viewpinjaman = DetailPinjamanView::all();
+        
         $inventaris = Inventaris::all();
         return view('index', compact('inventaris'));
     }
@@ -44,10 +45,14 @@ class InventarisController extends Controller
     //         $request->nama_inventaris,
     //         $request->qty
     // );
-        $id_inv = Inventaris::max('id_inventaris') + 1;
+        // $id_inv = Inventaris::max('id_inventaris') + 1;
+        $id = DB::table('inventaris')->orderBy('id_inventaris', 'desc')->first();
+        $dd = $id->id_inventaris + 1;
+
+        // $id_inv = Inventaris::max('id_inventaris') + 1;
         Inventaris::create([
             'nama_inventaris' => $request->nama_inventaris,
-            'kode_inventaris' => "INV/"."$id_inv"."/".date("ymd").date("his")."/"."$request->ruangan"."/"."$request->jenis_product",
+            'kode_inventaris' => "INV/"."$dd"."/".date("ymd").date("his")."/"."$request->ruangan"."/"."$request->jenis_product",
             'keterangan_inventaris' => $request->keterangan_inventaris,
             'jumlah_inventaris' => $request->qty,
             'tanggal_register_inventaris' => date('Y-m-d'),
@@ -77,7 +82,9 @@ class InventarisController extends Controller
      */
     public function edit(Inventaris $inventaris)
     {
-        //
+        $jenis = DB::table('jenis')->get();
+        $ruangan = DB::table('ruangan')->get();
+        return view('inv_edit', compact('inventaris', 'jenis', 'ruangan'));
     }
 
     /**
@@ -98,8 +105,13 @@ class InventarisController extends Controller
      * @param  \App\Inventaris  $inventaris
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Inventaris $inventaris)
+    public function destroy(Inventaris $inv)
     {
-        //
+        Inventaris::destroy($inv->id_inventaris);
+        // $id =  DB::table('inventaris')->where('id_inventaris', "$inv->id_inventaris")->first();
+        // $id = Inventaris::findOrFail($inv->id_inventaris);
+        // $stf = $id->delete();
+        // echo $inv->id_inventaris;
+        return redirect('/')->with('status', 'Customer Remove success fully!');
     }
 }

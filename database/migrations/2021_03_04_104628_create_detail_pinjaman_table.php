@@ -18,6 +18,7 @@ class CreateDetailPinjamanTable extends Migration
             $table->integer('id_inventaris')->index('id_inventaris');
             $table->integer('jumlah_pinjaman');
             $table->integer('id_peminjaman')->index('id_peminjaman');
+            $table->softDeletes();
         });
     }
 

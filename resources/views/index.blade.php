@@ -36,8 +36,12 @@
                 <td>{{$inv->id_ruang}}</td>
                 <td>{{$inv->id_user}}</td>
                 <th>
-                    <a class="btn btn-danger" href=""><i class="fas fa-pen"></i></a>
-                    <a class="btn btn-warning" href=""><i class="fas fa-trash"></i></a>
+                    <a class="btn btn-danger" href="/edit/{{$inv->id_inventaris}}"><i class="fas fa-pen"></i></a>
+                    <form action="/delete/{{$inv->id_inventaris}}" style="display: contents;" method="POST">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="btn btn-warning" href=""><i class="fas fa-trash"></i></button>
+                    </form>
                 </th>
             </tr>    
             @endforeach
