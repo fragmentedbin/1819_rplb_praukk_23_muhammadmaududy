@@ -16,9 +16,9 @@ class Inventaris extends Seeder
            'keterangan_inventaris'=>'baik',
            'jumlah_inventaris'=>20,
            'id_jenis'=>1,
-           'tanggal_register_inventaris'=>'21-03-03',
+           'tanggal_register_inventaris'=>date('Y-m-d'),
            'id_ruang'=>1,
-           'kode_inventaris'=>1,
+           'kode_inventaris'=>"INV/1/".date("ymd").date("his")."/1/1",
            'id_user'=>1
         ]);
     }

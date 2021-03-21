@@ -8,47 +8,39 @@
     <table class="table display nowrap" style="width: 100%" id="inventaris-table">
         <thead>
             <tr>
-                <th>#</th>
-                <th scope="col">ID</th>
-                <th scope="col">ID Jenis</th>
-                <th scope="col">Tanggal</th>
-                <th scope="col">ID Ruang</th>
+                <th>NO</th>
+                <th scope="col">ID-INV</th>
                 <th scope="col">Kode Inventaris</th>
-                <th scope="col">ID Petugas</th>
                 <th scope="col">Nama</th>
-                <th scope="col">Kode</th>
                 <th scope="col">Keterangan</th>
+                <th scope="col">Tanggal Registrasi</th>
                 <th scope="col">Jumlah</th>
+                <th scope="col">ID-JNS</th>
+                <th scope="col">ID Ruang</th>
+                <th scope="col">ID User</th>
+                <th scope="col">action</th>
             </tr>
         </thead>
         <tbody>
+        
+            @foreach ($inventaris as $inv)
             <tr>
-                <th>1</th>
-                <th>INV-1</th>
-                <td>JNS-1</td>
-                <td>12/02/2002</td>
-                <td>RNG-1</td>
-                <td>1-1</td>
-                <td>PTG-1</td>
-                <td>Battery</td>
-                <td>00001</td>
-                <td>Baik</td>
-                <td>5</td>
-            </tr>
-            <tr>
-                <th>2</th>
-                <th>INV-2</th>
-                <td>JNS-2</td>
-                <td>22/02/2002</td>
-                <td>RNG-2</td>
-                <td>2-2</td>
-                <td>PTG-2</td>
-                <td>PCB</td>
-                <td>00002</td>
-                <td>Baik</td>
-                <td>7</td>
-            </tr>
-
+                <th>{{$loop->iteration}}</th>
+                <td>INV-{{$inv->id_inventaris}}</td>
+                <td>{{$inv->kode_inventaris}}</td>
+                <td>{{$inv->nama_inventaris}}</td>
+                <td>{{$inv->keterangan_inventaris}}</td>
+                <td>{{$inv->tanggal_register_inventaris}}</td>
+                <td>{{$inv->jumlah_inventaris}}</td>
+                <td>{{$inv->id_jenis}}</td>
+                <td>{{$inv->id_ruang}}</td>
+                <td>{{$inv->id_user}}</td>
+                <th>
+                    <a class="btn btn-danger" href=""><i class="fas fa-pen"></i></a>
+                    <a class="btn btn-warning" href=""><i class="fas fa-trash"></i></a>
+                </th>
+            </tr>    
+            @endforeach
         </tbody>
     </table>
 </div>
