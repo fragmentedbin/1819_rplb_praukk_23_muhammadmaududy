@@ -83,10 +83,15 @@ class InventarisController extends Controller
     public function edit(Inventaris $inv)
     {
         // $user = DB::table('users')->where('name', 'John')->first();
+        $allJenis = DB::table('jenis')->get();
+        $allRuangan = DB::table('ruangan')->get();
         $jenis = DB::table('jenis')->where('id_jenis', "$inv->id_jenis")->get();
+        $ruangan = DB::table('ruangan')->where('id_ruangan', "$inv->id_ruang")->get();
+        // dd($allJenis, $allRuangan);
         $inventaris = DB::table('inventaris')->where('id_inventaris', "$inv->id_inventaris")->get();
-        $ruangan = DB::table('ruangan')->get();
-        return view('inv_edit', compact('inventaris', 'jenis', 'ruangan'));
+        
+        // $ruangan = DB::table('ruangan')->get();
+        return view('inv_edit', compact('inventaris', 'jenis', 'ruangan', 'allJenis', 'allRuangan'));
     }
 
     /**

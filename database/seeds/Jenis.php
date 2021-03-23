@@ -16,5 +16,10 @@ class Jenis extends Seeder
             'kode_jenis'=>1,
             'keterangan'=>'barang electric'
         ]);
+        DB::table('jenis')->insert([
+            'nama_jenis'=>'Chemical',
+            'kode_jenis'=>2,
+            'keterangan'=>'barang Kimia'
+        ]);
     }
 }

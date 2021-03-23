@@ -16,5 +16,10 @@ class Ruangan extends Seeder
             'kode_ruangan'=>1,
             'keterangan_ruangan'=>'lab rpl 1'
         ]);
+        DB::table('ruangan')->insert([
+            'nama_ruangan'=>'multimedia',
+            'kode_ruangan'=>2,
+            'keterangan_ruangan'=>'lab ,multimedia 2'
+        ]);
     }
 }
