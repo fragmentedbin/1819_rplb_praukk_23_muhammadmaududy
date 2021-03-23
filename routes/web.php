@@ -20,5 +20,6 @@ Route::get('/', 'InventarisController@index')->name('inventaris');
 Route::get('inv_add', 'InventarisController@create')->name('inventaris');
 Route::post('/inv_add', 'InventarisController@store')->name('inventaris');
 Route::delete('/delete/{inv}', 'InventarisController@destroy');
-Route::get('/edit/{inv}', "InventarisController@edit")->name('inventaris');;
+Route::get('/edit/{inv}', "InventarisController@edit")->name('inventaris');
+Route::get('/inv_put/{inv}', "InventarisController@update");
 Route::get('pinjaman', 'PinjamanController@index')->name('pinjaman');

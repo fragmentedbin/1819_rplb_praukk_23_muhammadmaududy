@@ -80,9 +80,11 @@ class InventarisController extends Controller
      * @param  \App\Inventaris  $inventaris
      * @return \Illuminate\Http\Response
      */
-    public function edit(Inventaris $inventaris)
+    public function edit(Inventaris $inv)
     {
-        $jenis = DB::table('jenis')->get();
+        // $user = DB::table('users')->where('name', 'John')->first();
+        $jenis = DB::table('jenis')->where('id_jenis', "$inv->id_jenis")->get();
+        $inventaris = DB::table('inventaris')->where('id_inventaris', "$inv->id_inventaris")->get();
         $ruangan = DB::table('ruangan')->get();
         return view('inv_edit', compact('inventaris', 'jenis', 'ruangan'));
     }
@@ -96,7 +98,7 @@ class InventarisController extends Controller
      */
     public function update(Request $request, Inventaris $inventaris)
     {
-        //
+        dd($request);
     }
 
     /**
