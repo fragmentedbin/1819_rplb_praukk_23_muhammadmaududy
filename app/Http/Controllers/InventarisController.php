@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\{Inventaris, DetailPinjamanView};
+// use Illuminate\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+// use App\Http\Controllers\Auth\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 
 class InventarisController extends Controller
 {
@@ -51,24 +56,21 @@ class InventarisController extends Controller
      */
     public function store(Request $request)
     {
-    //     dd(
-    //         $request->nama_inventaris,
-    //         $request->qty
-    // );
+    // dd();
         // $id_inv = Inventaris::max('id_inventaris') + 1;
         $id = DB::table('inventaris')->orderBy('id_inventaris', 'desc')->first();
         $dd = $id->id_inventaris + 1;
-
+        $id_user = Auth::user()->id;
         // $id_inv = Inventaris::max('id_inventaris') + 1;
         Inventaris::create([
             'nama_inventaris' => $request->nama_inventaris,
-            'kode_inventaris' => "INV/"."$dd"."/".date("ymd").date("his")."/"."$request->ruangan"."/"."$request->jenis_product",
+            'kode_inventaris' => "INV/"."$dd"."/".date("ymd").date("his")."/"."$request->ruangan"."/"."$request->jenis_product"."/"."$id_user",
             'keterangan_inventaris' => $request->keterangan_inventaris,
             'jumlah_inventaris' => $request->qty,
             'tanggal_register_inventaris' => date('Y-m-d'),
             'id_ruang' => $request->ruangan,
             'id_jenis' => $request->jenis_product,
-            'id_user' => "1"
+            'id_user' => $id_user
         ]);
         return redirect('/');
     }
@@ -79,9 +81,9 @@ class InventarisController extends Controller
      * @param  \App\Inventaris  $inventaris
      * @return \Illuminate\Http\Response
      */
-    public function show(Inventaris $inventaris)
+    public function show(Inventaris $inv)
     {
-        //
+        return view('inv_detail', compact('inv'));
     }
 
     /**

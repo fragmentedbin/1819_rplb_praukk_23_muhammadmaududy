@@ -50,7 +50,7 @@
                             <label for="level" class="col-md-4 col-form-label text-md-right">{{ __('level') }}</label>
 
                             <div class="col-md-6">
-                                <select name="name" id="level" class="form-control">
+                                <select name="level" id="level" class="form-control">
                                     <option value="0">-</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>

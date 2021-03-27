@@ -1,7 +1,7 @@
 @extends('layouts/structure')
 @section('content')
 <div class="content-main">
-    <h1>edit Inventory <span class="user-id">ID-USER #00001</span></h1>
+    <h1>edit Inventory <span class="user-id">ID-USER {{Auth::user()->id}}</span></h1>
     <hr>
     <form method="GET" action="/inv_put/{{$inventaris[0]->id_inventaris}}" class="form">
         @csrf

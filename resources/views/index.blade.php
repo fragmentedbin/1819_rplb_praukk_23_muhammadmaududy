@@ -36,6 +36,7 @@
                 <td>{{$inv->id_ruang}}</td>
                 <td>{{$inv->id_user}}</td>
                 <th>
+                    <a class="btn btn-primary" href="/show/{{$inv->id_inventaris}}"><i class="fas fa-eye"></i></a>
                     <a class="btn btn-danger" href="/edit/{{$inv->id_inventaris}}"><i class="fas fa-pen"></i></a>
                     <form action="/delete/{{$inv->id_inventaris}}" style="display: contents;" method="POST">
                         @method('delete')

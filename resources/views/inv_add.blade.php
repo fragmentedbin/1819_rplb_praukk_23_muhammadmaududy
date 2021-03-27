@@ -1,10 +1,11 @@
 @extends('layouts/structure')
 @section('content')
 <div class="content-main">
-    <h1>add Inventory <span class="user-id">ID-USER #00001</span></h1>
+    <h1>add Inventory <span class="user-id">ID-USER #{{Auth::user()->id}}</span></h1>
     <hr>
     <form method="POST" action="/inv_add" class="form">
         @csrf
+        {{-- <input type="number" name="usr" value="{{Auth::user()->id}}"> --}}
         <div class="form-group">
             <label for="jenis_product" class="form-label">Type</label>
             <select name="jenis_product" id="jenis_product" class="form-select">
