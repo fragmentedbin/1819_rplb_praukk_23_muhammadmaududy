@@ -16,7 +16,7 @@ class AddForeignKeysToInventarisTable extends Migration
         Schema::table('inventaris', function (Blueprint $table) {
             $table->foreign('id_jenis', 'inventaris_ibfk_1')->references('id_jenis')->on('jenis')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('id_ruang', 'inventaris_ibfk_2')->references('id_ruangan')->on('ruangan')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('id_user', 'inventaris_ibfk_3')->references('id_user')->on('user')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('id_user', 'inventaris_ibfk_3')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 

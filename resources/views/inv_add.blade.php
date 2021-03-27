@@ -1,4 +1,4 @@
-@extends('layout/structure')
+@extends('layouts/structure')
 @section('content')
 <div class="content-main">
     <h1>add Inventory <span class="user-id">ID-USER #00001</span></h1>

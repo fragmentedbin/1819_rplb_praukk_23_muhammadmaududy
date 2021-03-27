@@ -1,4 +1,4 @@
-@extends('layout/structure')
+@extends('layouts/structure')
 @section('content')
 <div class="content-main">
     <h1>Pinjaman</h1>

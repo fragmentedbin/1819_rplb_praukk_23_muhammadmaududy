@@ -14,7 +14,7 @@ class AddForeignKeysToLogTable extends Migration
     public function up()
     {
         Schema::table('log', function (Blueprint $table) {
-            $table->foreign('id_user', 'log_ibfk_1')->references('id_user')->on('user')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('id_user', 'log_ibfk_1')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('id_level', 'log_ibfk_2')->references('id_level')->on('level')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }

@@ -11,23 +11,26 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user')->insert([
-            'username_user'=>'aheng',
-            'password_user'=> Hash::make('aheng'),
-            'nama_user'=>'ahehong',
+        DB::table('users')->insert([
+            'name'=>'aheng',
+            'email'=>'muhammadmaududy1@gmail.com',
+            'password'=> Hash::make('aheng123456'),
             'id_level'=>1
+            // 'nama_user'=>'ahehong',
             ]);
-        DB::table('user')->insert([
-            'username_user'=>'rara',
-            'password_user'=> Hash::make('rara'),
-            'nama_user'=>'raraja',
+        DB::table('users')->insert([
+            'name'=>'rara',
+            'email'=>'muhammadmaududy2@gmail.com',
+            'password'=> Hash::make('rara123456'),
             'id_level'=>2
+            // 'nama_user'=>'raraja',
             ]);
-        DB::table('user')->insert([
-            'username_user'=>'joe',
-            'password_user'=> Hash::make('joe'),
-            'nama_user'=>'joce',
+        DB::table('users')->insert([
+            'name'=>'joe',
+            'email'=>'muhammadmaududy3@gmail.com',
+            'password'=> Hash::make('joe123456'),
             'id_level'=>3
+            // 'nama_user'=>'joce',
             ]);
     }
 }

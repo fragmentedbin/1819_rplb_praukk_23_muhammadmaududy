@@ -1,4 +1,4 @@
-@extends('layout/structure')
+@extends('layouts/structure')
 @section('content')
 <div class="content-main">
     <h1>edit Inventory <span class="user-id">ID-USER #00001</span></h1>
@@ -8,19 +8,19 @@
         <div class="form-group">
 
             <label for="jenis_product" class="form-label">Type</label>
-            <?php 
-                echo "<br/>";
-                echo $id_inv = $inventaris[0]->id_jenis;
-                echo "<br/>";
-                echo $id_rng = $ruangan[0]->id_ruangan; 
-                echo "<br/>";
-                echo $id_jns = $jenis[0]->id_jenis;
+            <?php
+                // echo "<br/>";
+                $id_inv = $inventaris[0]->id_jenis;
+                // echo "<br/>";
+                $id_rng = $ruangan[0]->id_ruangan;
+                // echo "<br/>";
+                $id_jns = $jenis[0]->id_jenis;
             ?>
             {{-- {{dd($id_jns)}} --}}
             <select name="jenis_product" id="jenis_product" class="form-select">
                 <option>----</option>
                 @foreach ($allJenis as $jns)
-                    <option @if ($id_inv === $jns->id_jenis) selected @endif value="{{$jns->id_jenis}}">{{$jns->nama_jenis}} {{ $jns->id_jenis }}
+                <option @if ($id_inv===$jns->id_jenis) selected @endif value="{{$jns->id_jenis}}">{{$jns->nama_jenis}}
                 </option>
                 @endforeach
             </select>
@@ -43,7 +43,7 @@
             <select name="ruangan" id="ruangan" class="form-select">
                 <option selected>----</option>
                 @foreach ($allRuangan as $rng)
-                <option @if ($id_rng === $rng->id_ruangan) selected @endif
+                <option @if ($id_rng===$rng->id_ruangan) selected @endif
                     value="{{$rng->id_ruangan}}">{{$rng->nama_ruangan}} - {{$rng->keterangan_ruangan}}</option>
                 @endforeach
             </select>

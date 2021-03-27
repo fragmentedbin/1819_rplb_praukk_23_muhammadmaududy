@@ -23,3 +23,7 @@ Route::delete('/delete/{inv}', 'InventarisController@destroy');
 Route::get('/edit/{inv}', "InventarisController@edit")->name('inventaris');
 Route::get('/inv_put/{inv}', "InventarisController@update");
 Route::get('pinjaman', 'PinjamanController@index')->name('pinjaman');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

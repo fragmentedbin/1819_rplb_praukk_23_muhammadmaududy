@@ -8,6 +8,16 @@ use Illuminate\Support\Facades\DB;
 
 class InventarisController extends Controller
 {
+        /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +26,7 @@ class InventarisController extends Controller
     public function index()
     {
         // $viewpinjaman = DetailPinjamanView::all();
-        
+
         $inventaris = Inventaris::all();
         return view('index', compact('inventaris'));
     }
@@ -89,7 +99,7 @@ class InventarisController extends Controller
         $ruangan = DB::table('ruangan')->where('id_ruangan', "$inv->id_ruang")->get();
         // dd($allJenis, $allRuangan);
         $inventaris = DB::table('inventaris')->where('id_inventaris', "$inv->id_inventaris")->get();
-        
+
         // $ruangan = DB::table('ruangan')->get();
         return view('inv_edit', compact('inventaris', 'jenis', 'ruangan', 'allJenis', 'allRuangan'));
     }
@@ -101,9 +111,18 @@ class InventarisController extends Controller
      * @param  \App\Inventaris  $inventaris
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Inventaris $inventaris)
+    public function update(Request $request, Inventaris $inv)
     {
-        dd($request);
+        // dd($request->keterangan_inventaris, $inv->id_jenis);
+
+        Inventaris::where('id_inventaris', $inv->id_inventaris)->update([
+            'nama_inventaris' => $request->nama_inventaris,
+            'keterangan_inventaris' => $request->keterangan_inventaris,
+            'jumlah_inventaris' => $request->qty,
+            'id_jenis' => $request->jenis_product,
+            'id_ruang' => $request->ruangan
+        ]);
+        return redirect('/');
     }
 
     /**

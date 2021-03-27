@@ -16,7 +16,7 @@
     <div class="container-c">
         <div class="wrapper-c">
             <div class="content">
-                @include('layout/_nav')
+                @include('layouts/_nav')
                 @yield('content')
             </div>
         </div>
