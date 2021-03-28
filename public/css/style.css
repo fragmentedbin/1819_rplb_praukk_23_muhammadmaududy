@@ -83,3 +83,9 @@ body {
     font-size: 23px;
     font-weight: 600;
 }
+
+.add-pict-preview {
+    /* position: absolute; */
+    max-width: 200px;
+    /* max-height: 200px; */
+}

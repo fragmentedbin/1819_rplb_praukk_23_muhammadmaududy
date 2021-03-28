@@ -8,7 +8,11 @@
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.1/css/all.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/datatables.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/datatables.min.css')}}" />
+    <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script> 
     <title>home - inventaris</title>
 </head>
 
@@ -53,7 +57,28 @@
                ],
                "scrollX":true
             } );
+            
+        $(document).on("click", ".browse", function() {
+            var file = $(this).parents().find(".file");
+            file.trigger("click");
+            });
+            $('input[type="file"]').change(function(e) {
+            var fileName = e.target.files[0].name;
+            $("#file").val(fileName);
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                // get loaded data and render thumbnail.
+                document.getElementById("preview").src = e.target.result;
+            };
+            // read the image file as a data URL.
+            reader.readAsDataURL(this.files[0]);
+            });
+
+            
         } );
+    </script>
+    <script>
     </script>
 
 </body>

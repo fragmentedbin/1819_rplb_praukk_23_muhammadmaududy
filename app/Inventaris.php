@@ -19,6 +19,7 @@ class Inventaris extends Model
         'jumlah_inventaris',
         'id_ruang',
         'id_jenis',
-        'id_user'
+        'id_user',
+        'img_inventaris'
     ];
 }

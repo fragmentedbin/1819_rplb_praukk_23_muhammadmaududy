@@ -3,8 +3,16 @@
 <div class="content-main">
     <div class="title-content">
         <h1>Inventaris</h1>
+        {{-- {{dd($user->id_level)}} --}}
+        @can('inventaris_add', App\Inventaris::class)
         <span class="btn-add ml-auto p-2 justify-content-end"><a href="inv_add" class="btn btn-primary"><i class="fa fa-plus"></i></a></span>
+            
+        @endcan
+        {{-- @can('', App\Inventaris::class)
+        @endcan --}}
+    
     </div>
+    
     <table class="table display nowrap" style="width: 100%" id="inventaris-table">
         <thead>
             <tr>

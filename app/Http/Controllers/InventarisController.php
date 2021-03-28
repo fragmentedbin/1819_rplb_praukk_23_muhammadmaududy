@@ -31,6 +31,7 @@ class InventarisController extends Controller
     public function index()
     {
         // $viewpinjaman = DetailPinjamanView::all();
+        // $this->authorize('inventaris_add', Inventaris::class);
 
         $inventaris = Inventaris::all();
         return view('index', compact('inventaris'));
@@ -56,12 +57,27 @@ class InventarisController extends Controller
      */
     public function store(Request $request)
     {
-    // dd();
-        // $id_inv = Inventaris::max('id_inventaris') + 1;
+        // dd($request->file('img_barang')->getClientMimeType());
+        // function imgType($request){
+        //     if ($request->file('img_barang')->getClientMimeType() == "image/jpeg") {
+        //         echo '.jpeg';
+        //     } elseif ($request->file('img_barang')->getClientMimeType() == "image/png") {
+        //         echo '.png';
+        //     }
+        // }
+        // imgType();
+
+        // dd($file);
+        
         $id = DB::table('inventaris')->orderBy('id_inventaris', 'desc')->first();
         $dd = $id->id_inventaris + 1;
         $id_user = Auth::user()->id;
-        // $id_inv = Inventaris::max('id_inventaris') + 1;
+        
+        $file = $request->file('img_barang');
+        $dir = "img/inventaris/".$dd."/";
+        $nameImg = $request->file('img_barang')->getClientOriginalName();
+        // dd($nameImg);
+
         Inventaris::create([
             'nama_inventaris' => $request->nama_inventaris,
             'kode_inventaris' => "INV/"."$dd"."/".date("ymd").date("his")."/"."$request->ruangan"."/"."$request->jenis_product"."/"."$id_user",
@@ -70,8 +86,10 @@ class InventarisController extends Controller
             'tanggal_register_inventaris' => date('Y-m-d'),
             'id_ruang' => $request->ruangan,
             'id_jenis' => $request->jenis_product,
-            'id_user' => $id_user
+            'id_user' => $id_user,
+            'img_inventaris' => $nameImg
         ]);
+        $file->move($dir, $nameImg);
         return redirect('/');
     }
 

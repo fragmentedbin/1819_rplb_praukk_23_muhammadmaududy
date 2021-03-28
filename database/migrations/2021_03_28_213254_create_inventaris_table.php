@@ -18,6 +18,7 @@ class CreateInventarisTable extends Migration
             $table->string('kode_inventaris', 100)->unique();
             $table->string('nama_inventaris', 100);
             $table->string('keterangan_inventaris', 100);
+            $table->string('img_inventaris', 100)->nullable();
             $table->date('tanggal_register_inventaris');
             $table->integer('jumlah_inventaris');
             $table->integer('id_jenis')->index('id_jenis');
