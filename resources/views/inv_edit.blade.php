@@ -3,8 +3,21 @@
 <div class="content-main">
     <h1>edit Inventory <span class="user-id">ID-USER {{Auth::user()->id}}</span></h1>
     <hr>
-    <form method="GET" action="/inv_put/{{$inventaris[0]->id_inventaris}}" class="form">
+    <form method="POST" action="/inv_post/{{$inventaris[0]->id_inventaris}}" class="form" enctype="multipart/form-data">
+        @method('post')
         @csrf
+        <input type="file" name="img_barang" class="file" accept="image/x-png, image/jpeg" style="visibility: hidden;position: absolute;">
+        <label for="img-input">Gambar barang :</label>
+        <div class="input-group my-3">
+            <br>
+            <button id="img-input" type="button" class="browse btn btn-primary">Browse...</button>
+            <input type="text" class="form-control browse" readonly placeholder="Upload File" id="file">
+            <div class="input-group-append">
+            </div>
+        </div>
+        <div class="ml-2 col-sm-6 add-pict-preview">
+            <img src='{{asset("img/inventaris/".$inventaris[0]->id_inventaris."/".$inventaris[0]->img_inventaris)}}' id="preview" class="img-thumbnail">
+        </div>
         <div class="form-group">
 
             <label for="jenis_product" class="form-label">Type</label>

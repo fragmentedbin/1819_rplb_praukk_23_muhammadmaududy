@@ -14,7 +14,10 @@
                         </div>
                     @endif
 
-                    {{-- {{ dd(Auth::user()) }} --}}
+                    <ul>
+                        <li><a href="/">INVENTARIS</a></li>
+                        <li><a href="/pinjaman">PEMINJAMAN</a></li>
+                    </ul>
                 </div>
             </div>
         </div>

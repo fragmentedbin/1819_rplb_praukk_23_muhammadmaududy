@@ -22,8 +22,12 @@ Route::post('/inv_add', 'InventarisController@store')->name('inventaris');
 Route::delete('/delete/{inv}', 'InventarisController@destroy');
 Route::get('/show/{inv}', "InventarisController@show")->name('inventaris');
 Route::get('/edit/{inv}', "InventarisController@edit")->name('inventaris');
-Route::get('/inv_put/{inv}', "InventarisController@update");
+Route::post('/inv_post/{inv}', "InventarisController@update");
 Route::get('pinjaman', 'PinjamanController@index')->name('pinjaman');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

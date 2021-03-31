@@ -21,8 +21,6 @@ class VerificationController extends Controller
 
     use VerifiesEmails;
 
-    // Auth::routes(['verify' => true]);
-
     /**
      * Where to redirect users after verification.
      *

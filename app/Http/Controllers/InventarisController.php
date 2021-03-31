@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\{Inventaris, DetailPinjamanView};
+use App\{Inventaris, DetailPinjamanView, User};
 // use Illuminate\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 // use App\Http\Controllers\Auth\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -18,10 +19,10 @@ class InventarisController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Display a listing of the resource.
@@ -32,9 +33,17 @@ class InventarisController extends Controller
     {
         // $viewpinjaman = DetailPinjamanView::all();
         // $this->authorize('inventaris_add', Inventaris::class);
+        // dd(view-inv());
+        if (Gate::allows('view-inv')) {
+            $inventaris = Inventaris::all();
+            return view('index', compact('inventaris'));
+        }elseif (Gate::denies('view-inv')) {
+            return view('/home');
+        } else {
+            return view('/home');
+        }
 
-        $inventaris = Inventaris::all();
-        return view('index', compact('inventaris'));
+
     }
 
     /**
@@ -68,11 +77,11 @@ class InventarisController extends Controller
         // imgType();
 
         // dd($file);
-        
+
         $id = DB::table('inventaris')->orderBy('id_inventaris', 'desc')->first();
         $dd = $id->id_inventaris + 1;
         $id_user = Auth::user()->id;
-        
+
         $file = $request->file('img_barang');
         $dir = "img/inventaris/".$dd."/";
         $nameImg = $request->file('img_barang')->getClientOriginalName();
@@ -135,13 +144,19 @@ class InventarisController extends Controller
     {
         // dd($request->keterangan_inventaris, $inv->id_jenis);
 
+        $file = $request->file('img_barang');
+        $dir = "img/inventaris/".$inv->id_inventaris."/";
+        $nameImg = $request->file('img_barang')->getClientOriginalName();
+
         Inventaris::where('id_inventaris', $inv->id_inventaris)->update([
             'nama_inventaris' => $request->nama_inventaris,
             'keterangan_inventaris' => $request->keterangan_inventaris,
             'jumlah_inventaris' => $request->qty,
             'id_jenis' => $request->jenis_product,
-            'id_ruang' => $request->ruangan
+            'img_inventaris' => $nameImg
+
         ]);
+        $file->move($dir, $nameImg);
         return redirect('/');
     }
 

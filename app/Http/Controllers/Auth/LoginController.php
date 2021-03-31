@@ -38,7 +38,7 @@ class LoginController extends Controller
         //     ]);
         //     //LAKUKAN PENGECEKAN, JIKA INPUTAN DARI USERNAME FORMATNYA ADALAH EMAIL, MAKA KITA AKAN MELAKUKAN PROSES AUTHENTICATION MENGGUNAKAN EMAIL, SELAIN ITU, AKAN MENGGUNAKAN USERNAME
         //     $loginType = filter_var($request->name, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
-            
+
         //     //TAMPUNG INFORMASI LOGINNYA, DIMANA KOLOM TYPE PERTAMA BERSIFAT DINAMIS BERDASARKAN VALUE DARI PENGECEKAN DIATAS
         //     $login = [
         //         $loginType => $request->name,
@@ -58,7 +58,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.

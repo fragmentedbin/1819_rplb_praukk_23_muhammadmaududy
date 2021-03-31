@@ -9,8 +9,8 @@
     <div class="row">
 
         <div class="col-md-8">
-            <img class="img-fluid" src="{{asset('img/inventaris/'. $inv->id_inventaris .'/'. $inv->img_inventaris)}}"
-                alt="" style="max-width: 550px">
+            <img class="img-fluid add-pict-preview" src="{{asset('img/inventaris/'. $inv->id_inventaris .'/'. $inv->img_inventaris)}}"
+                alt="{{$inv->nama_inventaris}}">
         </div>
     </div>
 

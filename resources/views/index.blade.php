@@ -4,15 +4,16 @@
     <div class="title-content">
         <h1>Inventaris</h1>
         {{-- {{dd($user->id_level)}} --}}
-        @can('inventaris_add', App\Inventaris::class)
-        <span class="btn-add ml-auto p-2 justify-content-end"><a href="inv_add" class="btn btn-primary"><i class="fa fa-plus"></i></a></span>
-            
+
+        @can('add-inv')
+        <span class="btn-add ml-auto p-2 justify-content-end"><a href="inv_add" class="btn btn-primary"><i
+                    class="fa fa-plus"></i></a></span>
         @endcan
         {{-- @can('', App\Inventaris::class)
         @endcan --}}
-    
+
     </div>
-    
+
     <table class="table display nowrap" style="width: 100%" id="inventaris-table">
         <thead>
             <tr>
@@ -26,11 +27,13 @@
                 <th scope="col">ID-JNS</th>
                 <th scope="col">ID Ruang</th>
                 <th scope="col">ID User</th>
+                @can('employee-stuff')
                 <th scope="col">action</th>
+                @endcan
             </tr>
         </thead>
         <tbody>
-        
+
             @foreach ($inventaris as $inv)
             <tr>
                 <th>{{$loop->iteration}}</th>
@@ -43,6 +46,7 @@
                 <td>{{$inv->id_jenis}}</td>
                 <td>{{$inv->id_ruang}}</td>
                 <td>{{$inv->id_user}}</td>
+                @can('employee-stuff')
                 <th>
                     <a class="btn btn-primary" href="/show/{{$inv->id_inventaris}}"><i class="fas fa-eye"></i></a>
                     <a class="btn btn-danger" href="/edit/{{$inv->id_inventaris}}"><i class="fas fa-pen"></i></a>
@@ -52,7 +56,8 @@
                         <button type="submit" class="btn btn-warning" href=""><i class="fas fa-trash"></i></button>
                     </form>
                 </th>
-            </tr>    
+                @endcan
+            </tr>
             @endforeach
         </tbody>
     </table>
