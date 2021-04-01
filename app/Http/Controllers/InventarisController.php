@@ -33,11 +33,11 @@ class InventarisController extends Controller
     {
         // $viewpinjaman = DetailPinjamanView::all();
         // $this->authorize('inventaris_add', Inventaris::class);
-        // dd(view-inv());
-        if (Gate::allows('view-inv')) {
+        // dd(viewAny());
+        if (Gate::allows('viewAny')) {
             $inventaris = Inventaris::all();
             return view('index', compact('inventaris'));
-        }elseif (Gate::denies('view-inv')) {
+        }elseif (Gate::denies('viewAny')) {
             return view('/home');
         } else {
             return view('/home');

@@ -2,7 +2,7 @@
 @section('content')
 <div class="content-main">
     <div class="title-content">
-        <h1>Inventaris</h1>
+        <h1>User Setting</h1>
         {{-- {{dd($user->id_level)}} --}}
 
         @can('add-inv')

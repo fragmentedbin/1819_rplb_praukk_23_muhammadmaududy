@@ -32,9 +32,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="">Ruangan</a>
             </li>
+            @can('employee-stuff')
             <li class="nav-item">
-                <a class="nav-link" href="">Petugas</a>
+                <a class="nav-link" style="color: rgb(255, 73, 73);" href="">User-setting</a>
             </li>
+            @endcan
         </ul>
 
         

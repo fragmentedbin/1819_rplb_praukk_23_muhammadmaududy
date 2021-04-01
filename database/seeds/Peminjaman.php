@@ -16,6 +16,7 @@ class Peminjaman extends Seeder
            'tanggal_peminjaman'=>'21-03-03',
            'jumlah_pinjaman'=>20,
            'tanggal_kembali'=>'21-04-03',
+           'tanggal_dikembalikan'=>NULL,
            'status_peminjaman'=>'pending',
            'approval'=>1,
             'id_peminjam'=>1

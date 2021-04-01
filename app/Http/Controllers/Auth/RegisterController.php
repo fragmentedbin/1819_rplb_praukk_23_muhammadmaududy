@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\User;
+use App\{User, Peminjam};
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -64,10 +64,34 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        // return in_array(
+        //     User::create([
+        //         'name' => $data['name'],
+        //         'email' => $data['email'],
+        //         'password' => Hash::make($data['password']),
+        //         'id_level' => "3",
+        //     ]),
+        //     Peminjam::create([
+        //         "nama_peminjam"=>$data['name'],
+        //         "nip"=>$data['nip'],
+        //         "alamat"=>$data['alamat'],
+        //     ]),
+        // );
+
+        $User = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'id_level' => "3",
         ]);
+
+        $Peminjam = Peminjam::create([
+            "nama_peminjam"=>$data['name'],
+            "nip"=>$data['nip'],
+            "alamat"=>$data['alamat'],
+        ]);
+
+        return $User;
+        
     }
 }

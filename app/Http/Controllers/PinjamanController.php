@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\{Pinjaman, DetailPinjamanView};
+use App\{Pinjaman, DetailPinjamanView, DetailPinjaman, Inventaris};
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class PinjamanController extends Controller
@@ -14,7 +16,15 @@ class PinjamanController extends Controller
      */
     public function index()
     {
-        $pinjaman = DetailPinjamanView::all();
+        if (Gate::allows('viewAny')) {
+            $detailPinjaman = DetailPinjamanView::all();
+        return view('/pinjaman', compact('detailPinjaman'));
+        }elseif (Gate::denies('viewAny')) {
+            return view('/home');
+        } else {
+            return view('/home');
+        }
+
         return view('pinjaman', compact('pinjaman'));
     }
 
@@ -25,7 +35,9 @@ class PinjamanController extends Controller
      */
     public function create()
     {
-        //
+        
+        $inventaris = Inventaris::all();
+        return view('pnj_add', compact('inventaris'));
     }
 
     /**
@@ -36,7 +48,27 @@ class PinjamanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id_user = Auth::user()->id;
+        $effectiveDate = date('Y-m-d');
+        $effectiveDate = date('Y-m-d', strtotime("+3 months", strtotime($effectiveDate)));
+        
+        $Pinjaman = Pinjaman::Create([
+            'id_inventaris'=> $request-> jenis_product ,
+            'jumlah_pinjaman'=> $request-> qty,
+            'tanggal_peminjaman' => date("Y-m-d"),
+            'tanggal_kembali' => $effectiveDate,
+            'tanggal_dikembalikan' => NULL,
+            'status_peminjaman' => "pending",
+            'approval' => 0,
+            'id_peminjam' => $id_user,
+        ]);
+
+        $Detail = DetailPinjaman::create([
+            'id_inventaris'=> $request-> jenis_product,
+            'jumlah_pinjaman'=> $request-> qty, 
+            'id_peminjaman'=> $id_user, 
+        ]);
+        return redirect('/pinjaman');
     }
 
     /**

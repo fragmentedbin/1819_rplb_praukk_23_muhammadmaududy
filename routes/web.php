@@ -23,7 +23,10 @@ Route::delete('/delete/{inv}', 'InventarisController@destroy');
 Route::get('/show/{inv}', "InventarisController@show")->name('inventaris');
 Route::get('/edit/{inv}', "InventarisController@edit")->name('inventaris');
 Route::post('/inv_post/{inv}', "InventarisController@update");
+
 Route::get('pinjaman', 'PinjamanController@index')->name('pinjaman');
+Route::get('pnj_add', 'PinjamanController@create')->name('pinjaman');
+Route::post('/pnj_add', 'PinjamanController@store');
 
 Auth::routes();
 

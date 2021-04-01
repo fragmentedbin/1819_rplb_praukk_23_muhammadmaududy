@@ -26,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('view-inv', function($user){
+        Gate::define('viewAny', function($user){
 
             return in_array($user->id_level, [1, 2, 3]);
             // return $user->id_level === 1;
