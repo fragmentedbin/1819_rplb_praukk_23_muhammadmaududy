@@ -23,6 +23,7 @@ class CreatePeminjamanTable extends Migration
             $table->string('status_peminjaman', 50);
             $table->tinyInteger('approval');
             $table->integer('id_peminjam')->index('id_peminjam');
+            $table->softDeletes();
         });
     }
 

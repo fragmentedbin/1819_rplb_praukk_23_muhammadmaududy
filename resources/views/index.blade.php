@@ -14,7 +14,7 @@
 
     </div>
 
-    <table class="table display nowrap" style="width: 100%" id="inventaris-table">
+    <table class="table table-striped display nowrap" style="width: 100%" id="inventaris-table">
         <thead>
             <tr>
                 <th>NO</th>

@@ -27,6 +27,19 @@ Route::post('/inv_post/{inv}', "InventarisController@update");
 Route::get('pinjaman', 'PinjamanController@index')->name('pinjaman');
 Route::get('pnj_add', 'PinjamanController@create')->name('pinjaman');
 Route::post('/pnj_add', 'PinjamanController@store');
+Route::delete('/pnj_delete/{pnj_id}', 'PinjamanController@destroy');
+Route::get('/pnj_show/{pnj_id}', 'PinjamanController@show')->name('pinjaman');
+Route::get('/pnj_edit/{pnj_id}', 'PinjamanController@edit')->name('pinjaman');
+Route::post('/pnj_post/{pnj_id}', 'PinjamanController@update');
+Route::post('/pnj_approve/{pnj_id}', 'PinjamanController@approve');
+
+Route::get('/ruangan', 'RuanganController@index')->name('ruangan');
+Route::get('/rng_add', 'RuanganController@create')->name('ruangan');
+Route::post('/rng_add', 'RuanganController@store');
+Route::delete('/rng_delete/{rng_id}', 'RuanganController@destroy');
+Route::get('/rng_edit/{rng_id}', 'RuanganController@edit')->name('ruangan');
+Route::post('/rng_post/{rng_id}', 'RuanganController@update');
+
 
 Auth::routes();
 

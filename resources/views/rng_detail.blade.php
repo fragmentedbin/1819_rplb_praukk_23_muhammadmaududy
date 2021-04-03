@@ -9,9 +9,13 @@
     <div class="row">
 
         <div class="col-md-8">
+            @if ($inv->img_inventaris == NULL)
+            {{NULL}}
+            @else
             <img class="img-fluid add-pict-preview"
                 src="{{asset('img/inventaris/'. $inv->id_inventaris .'/'. $inv->img_inventaris)}}"
                 alt="{{$inv->nama_inventaris}}">
+            @endif
         </div>
     </div>
 

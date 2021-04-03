@@ -11,7 +11,7 @@ $effectiveDate = date('Y-m-d', strtotime("+3 months", strtotime($effectiveDate))
         @csrf
         {{-- <input type="number" name="usr" value="{{Auth::user()->id}}"> --}}
         <div class="form-group">
-            <label for="jenis_product" class="form-label">Type</label>
+            <label for="jenis_product" class="form-label">Pilih Barang</label>
             <select name="jenis_product" id="jenis_product" class="form-select">
                 <option selected>----</option>
                 @foreach ($inventaris as $inv)

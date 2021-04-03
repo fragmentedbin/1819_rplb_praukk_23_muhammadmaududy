@@ -6,14 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
-class Peminjam extends Model
+class Ruangan extends Model
 {
     use SoftDeletes;
+
+    public $table = 'ruangan';
     public $timestamps = false;
-    public $table = "peminjam";
     protected $dates = ['deleted_at'];
-    protected $primaryKey = 'id_peminjam';
-    Protected $fillable = [
-        "nama_peminjam", "nip", "alamat",
+    protected $primaryKey = 'id_ruangan' ;
+    protected $fillable = [
+        'nama_ruangan',
+        'kode_ruangan',
+        'keterangan_ruangan',
     ];
 }

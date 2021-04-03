@@ -169,10 +169,10 @@ class InventarisController extends Controller
     public function destroy(Inventaris $inv)
     {
         Inventaris::destroy($inv->id_inventaris);
+        return redirect('/')->with('status', 'Customer Remove success fully!');
         // $id =  DB::table('inventaris')->where('id_inventaris', "$inv->id_inventaris")->first();
         // $id = Inventaris::findOrFail($inv->id_inventaris);
         // $stf = $id->delete();
         // echo $inv->id_inventaris;
-        return redirect('/')->with('status', 'Customer Remove success fully!');
     }
 }

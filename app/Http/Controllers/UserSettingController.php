@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 
-class UserSetting extends Controller
+class UserSettingController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\{Pinjaman, DetailPinjamanView, DetailPinjaman, Inventaris};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 
 class PinjamanController extends Controller
@@ -17,8 +19,10 @@ class PinjamanController extends Controller
     public function index()
     {
         if (Gate::allows('viewAny')) {
-            $detailPinjaman = DetailPinjamanView::all();
-        return view('/pinjaman', compact('detailPinjaman'));
+            $detailPinjaman = Pinjaman::all();
+            $nama_inv = DetailPinjamanView::select('nama_inventaris')->get();
+            // dd($nama_inv[0]);
+        return view('/pinjaman', compact('detailPinjaman', 'nama_inv'));
         }elseif (Gate::denies('viewAny')) {
             return view('/home');
         } else {
@@ -51,6 +55,9 @@ class PinjamanController extends Controller
         $id_user = Auth::user()->id;
         $effectiveDate = date('Y-m-d');
         $effectiveDate = date('Y-m-d', strtotime("+3 months", strtotime($effectiveDate)));
+        $id = DB::table('peminjaman')->orderBy('id_peminjaman', 'desc')->first();
+        $dd = $id->id_peminjaman + 1;
+
         
         $Pinjaman = Pinjaman::Create([
             'id_inventaris'=> $request-> jenis_product ,
@@ -66,7 +73,7 @@ class PinjamanController extends Controller
         $Detail = DetailPinjaman::create([
             'id_inventaris'=> $request-> jenis_product,
             'jumlah_pinjaman'=> $request-> qty, 
-            'id_peminjaman'=> $id_user, 
+            'id_peminjaman'=> $dd, 
         ]);
         return redirect('/pinjaman');
     }
@@ -77,9 +84,13 @@ class PinjamanController extends Controller
      * @param  \App\Pinjaman  $pinjaman
      * @return \Illuminate\Http\Response
      */
-    public function show(Pinjaman $pinjaman)
+    public function show(Pinjaman $pnj_id)
     {
-        //
+        $inv =  DB::table('inventaris')->where('id_inventaris', "$pnj_id->id_inventaris")->first();
+        
+        // dd($pnj_id);
+        // $inv = Inventaris::all();
+        return view('/pnj_detail', compact('pnj_id', 'inv'));
     }
 
     /**
@@ -88,9 +99,21 @@ class PinjamanController extends Controller
      * @param  \App\Pinjaman  $pinjaman
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pinjaman $pinjaman)
+    public function edit(Pinjaman $pnj_id)
     {
-        // 
+        // $jenis = DB::table('jenis')->get();
+        // $getJenis = DB::table('inventaris')->select('id_jenis')->where('id_inventaris', "$pnj_id->id_inventaris")->get();
+        // $selectedJenis = $getJenis[0]->id_jenis;
+        // dd($selectedJenis, $jenis);
+        $inventaris = Inventaris::all();
+        $getInventaris = DB::table('inventaris')->where('id_inventaris',"$pnj_id->id_inventaris")->get();
+        $selectedInv = $getInventaris[0]->id_inventaris;
+
+        $getStatus = DB::table('peminjaman')->where('id_peminjaman', $pnj_id->id_peminjaman)->get();
+        $selectedStatus = $getStatus[0]->status_peminjaman;
+        // dd();
+        return view('/pnj_edit', compact('pnj_id', 'selectedInv', 'selectedStatus', 'inventaris'));
+        
     }
 
     /**
@@ -100,9 +123,28 @@ class PinjamanController extends Controller
      * @param  \App\Pinjaman  $pinjaman
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pinjaman $pinjaman)
+    public function update(Request $request, Pinjaman $pnj_id)
     {
-        //
+        // dd($request->qty);
+        
+        $pinjaman = Pinjaman::where('id_peminjaman', $pnj_id->id_peminjaman)->update([
+            'id_inventaris' => $request->jenis_inventaris,
+            'jumlah_pinjaman' => $request->qty,
+            'status_peminjaman' => $request->status,
+        ]);
+
+        $detailPinjaman = DetailPinjaman::where('id_peminjaman', $pnj_id->id_peminjaman)->update([
+            'id_inventaris' => $request->jenis_inventaris,
+            'jumlah_pinjaman' => $request->qty,
+        ]);
+        return redirect('/pinjaman');
+    }
+
+    public function approve(Request $request, Pinjaman $pnj_id){
+        Pinjaman::where('id_peminjaman', $pnj_id->id_peminjaman)->update([
+            'approval' => 1,
+        ]);
+        return redirect('/pinjaman');
     }
 
     /**
@@ -111,8 +153,9 @@ class PinjamanController extends Controller
      * @param  \App\Pinjaman  $pinjaman
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pinjaman $pinjaman)
+    public function destroy(Pinjaman $pnj_id)
     {
-        //
+        Pinjaman::destroy($pnj_id->id_peminjaman);
+        return redirect('/')->with('status', 'Customer Remove success fully!');
     }
 }
