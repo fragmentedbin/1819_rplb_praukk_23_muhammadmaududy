@@ -41,6 +41,10 @@
                     <a class="nav-link @if (Route::current()->getName() === 'user_set') active @endif" style="color: rgb(255, 73, 73);" 
                         href="/user_set">User-setting</a>
                 </li>
+                <li class="nav-item @if (Route::current()->getName() === 'log') nav-active @endif" >
+                    <a class="nav-link @if (Route::current()->getName() === 'log') active @endif" 
+                        href="/log">Activity Log</a>
+                </li>
                 @endcan
             </ul>
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Peminjam;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class PeminjamController extends Controller
 {

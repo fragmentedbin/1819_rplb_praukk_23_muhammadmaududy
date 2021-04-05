@@ -32,6 +32,7 @@ Route::get('/pnj_show/{pnj_id}', 'PinjamanController@show')->name('pinjaman');
 Route::get('/pnj_edit/{pnj_id}', 'PinjamanController@edit')->name('pinjaman');
 Route::post('/pnj_post/{pnj_id}', 'PinjamanController@update');
 Route::post('/pnj_approve/{pnj_id}', 'PinjamanController@approve');
+Route::post('/pnj_return/{pnj_id}', 'PinjamanController@return');
 
 Route::get('/ruangan', 'RuanganController@index')->name('ruangan');
 Route::get('/rng_add', 'RuanganController@create')->name('ruangan');
@@ -43,8 +44,9 @@ Route::post('/rng_post/{rng_id}', 'RuanganController@update');
 Route::get('/user_set', 'UserSettingController@index')->name('user_set')->middleware(['auth', 'password.confirm']);
 Route::get('/usr_add', 'UserSettingController@create')->name('user_set');
 Route::post('/usr_add', 'UserSettingController@store');
+Route::delete('/usr_delete/{usr_id}', 'UserSettingController@destroy');
 
-
+Route::get('/log', 'LogController@index')->name('log');
 
 Auth::routes();
 

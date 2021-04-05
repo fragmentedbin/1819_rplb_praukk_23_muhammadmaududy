@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
         $this->call(Level::class);
         $this->call(UserSeeder::class);
         $this->call(PeminjamSeed::class);
+        // $this->call(LogActivities::class);
         $this->call(Inventaris::class);
         $this->call(Peminjaman::class);
         $this->call(DetailPinjaman::class);
-        $this->call(LogActivities::class);
     }
 }

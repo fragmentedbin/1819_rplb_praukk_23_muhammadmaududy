@@ -42,10 +42,10 @@
                     <a class="btn btn-primary" href="/show_usr/{{$usr->id}}"><i class="fas fa-eye"></i></a>
                     @can('only-admin')
                     <a class="btn btn-danger" href="/edit_usr/{{$usr->id}}"><i class="fas fa-pen"></i></a>
-                    <form action="/delete_usr/{{$usr->id}}" style="display: contents;" method="POST">
+                    <form action="/usr_delete/{{$usr->id}}" style="display: contents;" method="POST">
                         @method('delete')
                         @csrf
-                        <button type="submit" class="btn btn-warning" href=""><i class="fas fa-trash"></i></button>
+                        <button type="submit" class="btn btn-warning"><i class="fas fa-trash"></i></button>
                     </form>
                     @endcan
                 </th>

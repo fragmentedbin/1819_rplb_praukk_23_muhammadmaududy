@@ -40,6 +40,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script defer src="https://pro.fontawesome.com/releases/v5.13.1/css/all.css"></script>
     <script type="text/javascript" src="{{asset('js/datatables.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/pdfmake.min.js')}}"></script>
@@ -49,6 +50,22 @@
 
     <script>
         $(document).ready( function () {
+
+            $('#btn-return-pinjaman').on('click',function(e){
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Pengembalian sudah benar?',
+                    showCancelButton: true,
+                    confirmButtonText: `Sudah`,
+                    }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        $('#form-return-peminjaman').submit();
+                    } else if (result.isDismissed) {
+                        Swal.fire('Pinjaman tidak jadi di kembalikan', 'cek barang dengan benar!', 'info');
+                    }
+                })
+            });
 
             $('#inventaris-table').DataTable( {
                 dom: 'lBfrtip',

@@ -3,8 +3,7 @@
 <div class="content-main">
     <div class="title-content">
         <h1>Pinjaman</h1>
-        <span class="btn-add p-2"><a href="pnj_add" class="btn btn-primary"><i
-                    class="fa fa-plus"></i></a></span>
+        <span class="btn-add p-2"><a href="pnj_add" class="btn btn-primary"><i class="fa fa-plus"></i></a></span>
     </div>
     <table class="table table-striped display nowrap" style="width: 100%" id="pinjaman-table">
         <thead>
@@ -40,7 +39,22 @@
                 <td>{{$view->approval}}</td>
                 <th>
                     <a class="btn btn-primary" href="/pnj_show/{{$view->id_peminjaman}}"><i class="fas fa-eye"></i></a>
+                    {{-- <form action="">
+
+                        <button id="btn-test" type="submit">test</button>
+                    </form> --}}
                     @can('employee-stuff')
+                    @if ($view->tanggal_dikembalikan == NULL && $view->approval == 0)
+
+                    @elseif ($view->tanggal_dikembalikan == NULL && $view->approval == 1)
+                    <form id="form-return-peminjaman" action="/pnj_return/{{$view->id_peminjaman}}" style="display: contents;" method="POST">
+                        @method('POST')
+                        @csrf
+                        <button id="btn-return-pinjaman" type="submit" class="btn btn-success" href=""><i
+                                class="fad fa-exchange"></i></button>
+                    </form>
+                    @endif
+
                     <a class="btn btn-danger" href="/pnj_edit/{{$view->id_peminjaman}}"><i class="fas fa-pen"></i></a>
                     <form action="/pnj_delete/{{$view->id_peminjaman}}" style="display: contents;" method="POST">
                         @method('delete')
@@ -57,7 +71,12 @@
     </table>
 </div>
 <script>
-
+    
+    // $('#btn-return-pinjaman').on('click',function(e){
+    //             e.preventDefault();
+    //             alert('heyo');
+    //         });
+    
 
 </script>
 @endsection

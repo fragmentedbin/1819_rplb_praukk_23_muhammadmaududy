@@ -55,13 +55,13 @@
     </ul>
     @can('employee-stuff')
         
-    <a class="btn btn-danger" href="/edit/{{$inv->id_inventaris}}"><i class="fas fa-pen"></i></a>
-    <form action="/delete/{{$inv->id_inventaris}}" style="display: contents;" method="POST">
+    <a class="btn btn-danger" href="/edit/{{$pnj_id->id_peminjaman}}"><i class="fas fa-pen"></i></a>
+    <form action="/delete/{{$pnj_id->id_peminjaman}}" style="display: contents;" method="POST">
         @method('delete')
         @csrf
         <button type="submit" class="btn btn-warning" href=""><i class="fas fa-trash"></i></button>
     </form>
-    <form action="/pnj_approve/{{$inv->id_inventaris}}" style="display: contents;" method="POST">
+    <form action="/pnj_approve/{{$pnj_id->id_peminjaman}}" style="display: contents;" method="POST">
     @method('POST')
     @csrf
     <button type="submit" class="btn btn-success"><i class="fas fa-check"></i></button>

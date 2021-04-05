@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\{Pinjaman, DetailPinjamanView, DetailPinjaman, Inventaris};
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 use Illuminate\Http\Request;
 
@@ -79,7 +81,7 @@ class PinjamanController extends Controller
             'jumlah_pinjaman'=> $request-> qty, 
             'id_peminjaman'=> $dd, 
         ]);
-        return redirect('/pinjaman');
+        return redirect('/pinjaman')->with('success', 'peminjaman berhasil ditambahakan');
     }
 
     /**
@@ -145,10 +147,19 @@ class PinjamanController extends Controller
     }
 
     public function approve(Request $request, Pinjaman $pnj_id){
-        Pinjaman::where('id_peminjaman', $pnj_id->id_peminjaman)->update([
+        $pinjaman = Pinjaman::where('id_peminjaman', $pnj_id->id_peminjaman)->update([
             'approval' => 1,
         ]);
+        // dd($pnj_id);
         return redirect('/pinjaman');
+    }
+
+    public function return(Request $request, Pinjaman $pnj_id){
+        // dd(Carbon::now()->format('Y-m-d H:i:s'));
+        Pinjaman::where('id_peminjaman', $pnj_id->id_peminjaman)->update([
+            'tanggal_dikembalikan' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        return redirect('/pinjaman')->with('success', 'Barang dikembalikan!');
     }
 
     /**
@@ -160,6 +171,6 @@ class PinjamanController extends Controller
     public function destroy(Pinjaman $pnj_id)
     {
         Pinjaman::destroy($pnj_id->id_peminjaman);
-        return redirect('/')->with('status', 'Customer Remove success fully!');
+        return redirect('/pinjaman')->with('success', 'Customer Remove success fully!');
     }
 }

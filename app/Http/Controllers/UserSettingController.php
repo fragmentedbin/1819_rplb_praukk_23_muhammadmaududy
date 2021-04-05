@@ -115,8 +115,10 @@ class UserSettingController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $usr_id)
     {
-        //
+        dd($usr_id);
+        User::destroy($usr_id->id);
+        return redirect('/user_set');
     }
 }
