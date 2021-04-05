@@ -115,10 +115,16 @@ class UserSettingController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $usr_id)
+    public function destroy(User $user_id)
     {
-        dd($usr_id);
-        User::destroy($usr_id->id);
-        return redirect('/user_set');
+        // dd($user_id);
+        DB::beginTransaction();
+        try {
+            User::destroy($user_id->id);
+            DB::commit();
+            return redirect('/user_set')->with('success', 'user dengan id ' .$user_id->id. " berhasil di hapus");
+        } catch (\Throwable $th) {
+            return redirect('/user_set');
+        }
     }
 }

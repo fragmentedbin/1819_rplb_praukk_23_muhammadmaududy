@@ -44,7 +44,7 @@ Route::post('/rng_post/{rng_id}', 'RuanganController@update');
 Route::get('/user_set', 'UserSettingController@index')->name('user_set')->middleware(['auth', 'password.confirm']);
 Route::get('/usr_add', 'UserSettingController@create')->name('user_set');
 Route::post('/usr_add', 'UserSettingController@store');
-Route::delete('/usr_delete/{usr_id}', 'UserSettingController@destroy');
+Route::delete('/user_delete/{user_id}', 'UserSettingController@destroy');
 
 Route::get('/log', 'LogController@index')->name('log');
 
