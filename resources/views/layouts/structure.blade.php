@@ -20,9 +20,9 @@
     <div class="container-c">
         <div class="wrapper-c">
             <div class="content">
-                @include('sweetalert::alert')
                 @include('layouts/_nav')
                 @yield('content')
+                @include('sweetalert::alert')
             </div>
         </div>
     </div>
@@ -44,9 +44,12 @@
     <script type="text/javascript" src="{{asset('js/datatables.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/pdfmake.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/vfs_fonts.js')}}"></script>
+    <script>
+    </script>
 
     <script>
         $(document).ready( function () {
+
             $('#inventaris-table').DataTable( {
                 dom: 'lBfrtip',
                 buttons: [

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 // use App\Http\Controllers\Auth\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class InventarisController extends Controller
@@ -78,28 +79,35 @@ class InventarisController extends Controller
 
         // dd($file);
 
-        $id = DB::table('inventaris')->orderBy('id_inventaris', 'desc')->first();
-        $dd = $id->id_inventaris + 1;
-        $id_user = Auth::user()->id;
-
-        $file = $request->file('img_barang');
-        $dir = "img/inventaris/".$dd."/";
-        $nameImg = $request->file('img_barang')->getClientOriginalName();
+        
+        DB::beginTransaction();
+        try{
+            $id = DB::table('inventaris')->orderBy('id_inventaris', 'desc')->first();
+            $dd = $id->id_inventaris + 1;
+            $id_user = Auth::user()->id;
+            $file = $request->file('img_barang');
+            $dir = "img/inventaris/".$dd."/";
+            $nameImg = $request->file('img_barang')->getClientOriginalName();
+            Inventaris::create([
+                'nama_inventaris' => $request->nama_inventaris,
+                'kode_inventaris' => "INV/"."$dd"."/".date("ymd").date("his")."/"."$request->ruangan"."/"."$request->jenis_product"."/"."$id_user",
+                'keterangan_inventaris' => $request->keterangan_inventaris,
+                'jumlah_inventaris' => $request->qty,
+                'tanggal_register_inventaris' => date('Y-m-d'),
+                'id_ruang' => $request->ruangan,
+                'id_jenis' => $request->jenis_product,
+                'id_user' => $id_user,
+                'img_inventaris' => $nameImg
+            ]);
+            DB::commit();
+            $file->move($dir, $nameImg);
+            return redirect('/')->with('success', 'Inventaris dengan kode '."INV/"."$dd"."/".date("ymd").date("his")."/"."$request->ruangan"."/"."$request->jenis_product"."/"."$id_user". " berhasil ditambahkan");
+        }catch(\throwable $e){
+            Alert::error('data gagal ditambahkan');
+            return redirect('/');
+        }
         // dd($nameImg);
 
-        Inventaris::create([
-            'nama_inventaris' => $request->nama_inventaris,
-            'kode_inventaris' => "INV/"."$dd"."/".date("ymd").date("his")."/"."$request->ruangan"."/"."$request->jenis_product"."/"."$id_user",
-            'keterangan_inventaris' => $request->keterangan_inventaris,
-            'jumlah_inventaris' => $request->qty,
-            'tanggal_register_inventaris' => date('Y-m-d'),
-            'id_ruang' => $request->ruangan,
-            'id_jenis' => $request->jenis_product,
-            'id_user' => $id_user,
-            'img_inventaris' => $nameImg
-        ]);
-        $file->move($dir, $nameImg);
-        return redirect('/');
     }
 
     /**

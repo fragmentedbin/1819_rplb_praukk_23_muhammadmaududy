@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class LogActivities extends Seeder
@@ -13,9 +14,10 @@ class LogActivities extends Seeder
     {
         DB::table('log')->insert([
             'id_user'=>1,
-            'id_level'=>1,
+            // 'id_level'=>1,
             'activities'=>'melakukan login',
-            'time'=>date("H:i:s")
+            'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
         ]);
     }
 }
