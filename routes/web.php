@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 // })->name("inventaris");
 Route::get('/', 'InventarisController@index')->name('inventaris');
 Route::get('inv_add', 'InventarisController@create')->name('inventaris');
-Route::post('/inv_add', 'InventarisController@store')->name('inventaris');
+Route::post('/inv_add', 'InventarisController@store');
 Route::delete('/delete/{inv}', 'InventarisController@destroy');
 Route::get('/show/{inv}', "InventarisController@show")->name('inventaris');
 Route::get('/edit/{inv}', "InventarisController@edit")->name('inventaris');
@@ -39,6 +39,11 @@ Route::post('/rng_add', 'RuanganController@store');
 Route::delete('/rng_delete/{rng_id}', 'RuanganController@destroy');
 Route::get('/rng_edit/{rng_id}', 'RuanganController@edit')->name('ruangan');
 Route::post('/rng_post/{rng_id}', 'RuanganController@update');
+
+Route::get('/user_set', 'UserSettingController@index')->name('user_set')->middleware(['auth', 'password.confirm']);
+Route::get('/usr_add', 'UserSettingController@create')->name('user_set');
+Route::post('/usr_add', 'UserSettingController@store');
+
 
 
 Auth::routes();

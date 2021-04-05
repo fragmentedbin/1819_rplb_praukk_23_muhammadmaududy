@@ -2,10 +2,10 @@
 @section('content')
 <div class="content-main">
     <h1>add Inventory <span class="user-id">ID-USER #{{Auth::user()->id}}</span></h1>
+    {{-- <input type="number" name="usr" value="{{Auth::user()->id}}"> --}}
     <hr>
     <form method="POST" action="/inv_add" class="form" enctype="multipart/form-data">
         @csrf
-        {{-- <input type="number" name="usr" value="{{Auth::user()->id}}"> --}}
 
         <input type="file" name="img_barang" class="file" accept="image/x-png, image/jpeg" style="visibility: hidden;position: absolute;">
         <label for="img-input">Gambar barang :</label>

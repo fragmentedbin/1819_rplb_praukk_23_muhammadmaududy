@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.1/css/all.css">
     <link rel="stylesheet" type="text/css" href="{{asset('css/datatables.min.css')}}" />
-    <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css"
+    {{-- <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css"
         rel="stylesheet" type="text/css" />
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script> --}}
     <title>home - inventaris</title>
 </head>
 
@@ -20,6 +20,7 @@
     <div class="container-c">
         <div class="wrapper-c">
             <div class="content">
+                @include('sweetalert::alert')
                 @include('layouts/_nav')
                 @yield('content')
             </div>
@@ -41,19 +42,51 @@
     </script>
     <script defer src="https://pro.fontawesome.com/releases/v5.13.1/css/all.css"></script>
     <script type="text/javascript" src="{{asset('js/datatables.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/pdfmake.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/vfs_fonts.js')}}"></script>
 
     <script>
         $(document).ready( function () {
             $('#inventaris-table').DataTable( {
+                dom: 'lBfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
                columnDefs: [
-                   {orderable: false, targets: 3}
+                   {orderable: false, targets: 10}
                ],
                "scrollX":true
             } );
             
             $('#pinjaman-table').DataTable( {
+                dom: 'lBfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
                columnDefs: [
-                   {orderable: false, targets: 3}
+                   {orderable: false, targets: 10}
+               ],
+               "scrollX":true
+            } );
+
+            $('#ruangan-table').DataTable( {
+                dom: 'lBfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+               columnDefs: [
+                   {orderable: false, targets: 5}
+               ],
+               "scrollX":true
+            } );
+            
+            $('#userSetting-table').DataTable( {
+                dom: 'lBfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+               columnDefs: [
+                   {orderable: false, targets: 6}
                ],
                "scrollX":true
             } );

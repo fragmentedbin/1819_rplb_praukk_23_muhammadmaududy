@@ -5,8 +5,8 @@
         <h1>User Setting</h1>
         {{-- {{dd($user->id_level)}} --}}
 
-        @can('add-inv')
-        <span class="btn-add ml-auto p-2 justify-content-end"><a href="inv_add" class="btn btn-primary"><i
+        @can('only-admin')
+        <span class="btn-add p-2"><a href="usr_add" class="btn btn-primary"><i
                     class="fa fa-plus"></i></a></span>
         @endcan
         {{-- @can('', App\Inventaris::class)
@@ -14,41 +14,35 @@
 
     </div>
 
-    <table class="table display nowrap" style="width: 100%" id="inventaris-table">
+    <table class="table display nowrap" style="width: 100%" id="userSetting-table">
         <thead>
             <tr>
                 <th>NO</th>
-                <th scope="col">ID-INV</th>
-                <th scope="col">Kode Inventaris</th>
+                <th scope="col">ID-User</th>
                 <th scope="col">Nama</th>
-                <th scope="col">Keterangan</th>
-                <th scope="col">Tanggal Registrasi</th>
-                <th scope="col">Jumlah</th>
-                <th scope="col">ID-JNS</th>
-                <th scope="col">ID Ruang</th>
-                <th scope="col">ID User</th>
-                <th scope="col">action</th>
+                <th scope="col">Email</th>
+                <th scope="col">NIP</th>
+                <th scope="col">Alamat</th>
+                <th scope="col">Level</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
 
-            @foreach ($inventaris as $inv)
+            @foreach ($usr_id as $usr)
             <tr>
                 <th>{{$loop->iteration}}</th>
-                <td>INV-{{$inv->id_inventaris}}</td>
-                <td>{{$inv->kode_inventaris}}</td>
-                <td>{{$inv->nama_inventaris}}</td>
-                <td>{{$inv->keterangan_inventaris}}</td>
-                <td>{{$inv->tanggal_register_inventaris}}</td>
-                <td>{{$inv->jumlah_inventaris}}</td>
-                <td>{{$inv->id_jenis}}</td>
-                <td>{{$inv->id_ruang}}</td>
-                <td>{{$inv->id_user}}</td>
+                <td>{{$usr->id}}</td>
+                <td>{{$usr->nama_peminjam}}</td>
+                <td>{{$usr->email}}</td>
+                <td>{{$usr->nip}}</td>
+                <td>{{$usr->alamat}}</td>
+                <td>{{$usr->id_level}}</td>
                 <th>
-                    <a class="btn btn-primary" href="/show/{{$inv->id_inventaris}}"><i class="fas fa-eye"></i></a>
-                    @can('employee-stuff')
-                    <a class="btn btn-danger" href="/edit/{{$inv->id_inventaris}}"><i class="fas fa-pen"></i></a>
-                    <form action="/delete/{{$inv->id_inventaris}}" style="display: contents;" method="POST">
+                    <a class="btn btn-primary" href="/show_usr/{{$usr->id}}"><i class="fas fa-eye"></i></a>
+                    @can('only-admin')
+                    <a class="btn btn-danger" href="/edit_usr/{{$usr->id}}"><i class="fas fa-pen"></i></a>
+                    <form action="/delete_usr/{{$usr->id}}" style="display: contents;" method="POST">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-warning" href=""><i class="fas fa-trash"></i></button>

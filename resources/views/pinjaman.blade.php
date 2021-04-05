@@ -3,7 +3,7 @@
 <div class="content-main">
     <div class="title-content">
         <h1>Pinjaman</h1>
-        <span class="btn-add ml-auto p-2 justify-content-end"><a href="pnj_add" class="btn btn-primary"><i
+        <span class="btn-add p-2"><a href="pnj_add" class="btn btn-primary"><i
                     class="fa fa-plus"></i></a></span>
     </div>
     <table class="table table-striped display nowrap" style="width: 100%" id="pinjaman-table">
@@ -18,6 +18,7 @@
                 <th scope="col">Tanggal Peminjaman</th>
                 <th scope="col">Tanggal Kembali</th>
                 <th scope="col">Tanggal dikembalikan</th>
+                <th scope="col">Approval</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -36,6 +37,7 @@
                     @if($view->tanggal_dikembalikan == NULL) Belum dikembalikan @endif
                     {{$view->tanggal_dikembalikan}}
                 </td>
+                <td>{{$view->approval}}</td>
                 <th>
                     <a class="btn btn-primary" href="/pnj_show/{{$view->id_peminjaman}}"><i class="fas fa-eye"></i></a>
                     @can('employee-stuff')

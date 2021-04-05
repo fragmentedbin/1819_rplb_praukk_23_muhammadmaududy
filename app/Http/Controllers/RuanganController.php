@@ -17,10 +17,21 @@ class RuanganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        $ruangan = Ruangan::all();
-        return view('ruangan', compact('ruangan'));
+
+        if (Gate::allows('viewAny')){
+            $ruangan = Ruangan::all();
+            return view('ruangan', compact('ruangan'));
+        }elseif (Gate::denies('viewAny')) {
+            return view('/home');
+        }else{
+            return view('/home');
+        }
     }
 
     /**

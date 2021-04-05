@@ -17,12 +17,21 @@ body {
     /* width: 1120px; */
     margin: auto;
 }
-.nav-c{
+
+.nav-c {
     /* background: chartreuse;
     width: 100%;
     margin: auto;
     justify-content: center; */
     /* display: flex; */
+}
+
+.dataTables_filter {
+    display: contents;
+}
+
+div.dataTables_wrapper div.dataTables_filter label {
+    margin-left: 10px;
 }
 
 .navbar-brand img {

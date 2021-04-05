@@ -3,10 +3,10 @@
 <div class="content-main">
     <div class="title-content">
         <h1>Ruangan</h1>
-        <span class="btn-add ml-auto p-2 justify-content-end"><a href="/rng_add" class="btn btn-primary"><i
+        <span class="btn-add p-2"><a href="/rng_add" class="btn btn-primary"><i
                     class="fa fa-plus"></i></a></span>
     </div>
-    <table class="table table-striped display nowrap" style="width: 100%" id="pinjaman-table">
+    <table class="table table-striped display nowrap" style="width: 100%" id="ruangan-table">
         <thead>
             <tr>
                 <th scope="col">NO</th>

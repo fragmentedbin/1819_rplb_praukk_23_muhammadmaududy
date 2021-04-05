@@ -3,7 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Level;
+use App\Peminjam;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+// use App\Http\Controllers\Auth\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserSettingController extends Controller
 {
@@ -12,9 +21,21 @@ class UserSettingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        //
+        // ->join('orders', 'users.id', '=', 'orders.user_id')
+        $usr_id = DB::table('users')
+            ->join('peminjam', 'users.id', '=', 'peminjam.id_peminjam')
+            ->select('users.*', 'peminjam.*')
+            ->get();
+        // dd($usr_id);
+        return view('user_setting', compact('usr_id'));
+        // ->select('league_name')
+        // ->where('countries.country_name', $country)
     }
 
     /**
@@ -24,7 +45,9 @@ class UserSettingController extends Controller
      */
     public function create()
     {
-        //
+        $user = User::all();
+        $level = Level::all();
+        return view('usr_add', compact('user','level'));
     }
 
     /**
@@ -35,7 +58,21 @@ class UserSettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $User = User::create([
+            'name' => $request['nama'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'id_level' => $request->level,
+        ]);
+
+        $Peminjam = Peminjam::create([
+            "nama_peminjam"=>$request->nama,
+            "nip"=>$request->nip,
+            "alamat"=>$request->alamat,
+        ]);
+
+        return redirect('/user_set');
     }
 
     /**

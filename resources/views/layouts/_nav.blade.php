@@ -36,9 +36,10 @@
                     <a class="nav-link @if (Route::current()->getName() === 'ruangan') active @endif "
                         href="/ruangan">ruangan</a>
                 </li>
-                @can('employee-stuff')
-                <li class="nav-item">
-                    <a class="nav-link" style="color: rgb(255, 73, 73);" href="">User-setting</a>
+                @can('only-admin')
+                <li class="nav-item @if (Route::current()->getName() === 'user_set') nav-active @endif" >
+                    <a class="nav-link @if (Route::current()->getName() === 'user_set') active @endif" style="color: rgb(255, 73, 73);" 
+                        href="/user_set">User-setting</a>
                 </li>
                 @endcan
             </ul>

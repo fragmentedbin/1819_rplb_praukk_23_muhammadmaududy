@@ -34,7 +34,7 @@ class AuthServiceProvider extends ServiceProvider
             // return $user->id_level === 3;
         });
 
-        Gate::define('add-inv', function($user){
+        Gate::define('only-admin', function($user){
             return in_array($user->id_level, [1]);
         });
 

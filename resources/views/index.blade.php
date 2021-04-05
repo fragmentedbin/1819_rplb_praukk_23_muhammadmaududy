@@ -5,8 +5,8 @@
         <h1>Inventaris</h1>
         {{-- {{dd($user->id_level)}} --}}
 
-        @can('add-inv')
-        <span class="btn-add ml-auto p-2 justify-content-end"><a href="inv_add" class="btn btn-primary"><i
+        @can('only-admin')
+        <span class="btn-add p-2"><a href="inv_add" class="btn btn-primary"><i
                     class="fa fa-plus"></i></a></span>
         @endcan
         {{-- @can('', App\Inventaris::class)
