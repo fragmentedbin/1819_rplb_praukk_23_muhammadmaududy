@@ -21,7 +21,7 @@ $effectiveDate = date('Y-m-d', strtotime("+3 months", strtotime($effectiveDate))
         </div>
         <div class="form-group">
             <label for="qty" class="form-label ">Qty</label>
-            <input type="number" max="{{$inv->jumlah_inventaris}}" name="qty" style="width: 200px" id="qty" class="form-control">
+            <input type="number" name="qty" style="width: 200px" id="qty" class="form-control">
         </div>
         <div class="form-group">
             <label for="date" class="form-label">Dikembalikan Sebelum : <span

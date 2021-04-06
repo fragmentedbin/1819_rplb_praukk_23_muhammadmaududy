@@ -84,7 +84,7 @@
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ],
                columnDefs: [
-                   {orderable: false, targets: 10}
+                   {orderable: false, targets: 9}
                ],
                "scrollX":true
             } );

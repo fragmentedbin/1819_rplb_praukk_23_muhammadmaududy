@@ -25,9 +25,12 @@ class PinjamanController extends Controller
     public function index()
     {
         if (Gate::allows('viewAny')) {
-            $detailPinjaman = Pinjaman::all();
-            $nama_inv = DetailPinjamanView::select('nama_inventaris')->get();
-            // dd($nama_inv[0]);
+            $detailPinjaman = Pinjaman::select('*')->get();
+            $nama_inv = DetailPinjamanView::select('*')->get();
+
+            // $data = array_combine($detailPinjamann;
+
+            // dd($detailPinjaman, $nama_inv);
         return view('/pinjaman', compact('detailPinjaman', 'nama_inv'));
         }elseif (Gate::denies('viewAny')) {
             return view('/home');
@@ -64,24 +67,37 @@ class PinjamanController extends Controller
         $id = DB::table('peminjaman')->orderBy('id_peminjaman', 'desc')->first();
         $dd = $id->id_peminjaman + 1;
 
-        
-        $Pinjaman = Pinjaman::Create([
-            'id_inventaris'=> $request-> jenis_product ,
-            'jumlah_pinjaman'=> $request-> qty,
-            'tanggal_peminjaman' => date("Y-m-d"),
-            'tanggal_kembali' => $effectiveDate,
-            'tanggal_dikembalikan' => NULL,
-            'status_peminjaman' => "pending",
-            'approval' => 0,
-            'id_peminjam' => $id_user,
-        ]);
+        DB::beginTransaction();
+        try{
+            $Pinjaman = Pinjaman::Create([
+                'id_inventaris'=> $request-> jenis_product ,
+                'jumlah_pinjaman'=> $request-> qty,
+                'tanggal_peminjaman' => date("Y-m-d"),
+                'tanggal_kembali' => $effectiveDate,
+                'tanggal_dikembalikan' => NULL,
+                'status_peminjaman' => "pending",
+                'approval' => 0,
+                'id_peminjam' => $id_user,
+            ]);
 
-        $Detail = DetailPinjaman::create([
-            'id_inventaris'=> $request-> jenis_product,
-            'jumlah_pinjaman'=> $request-> qty, 
-            'id_peminjaman'=> $dd, 
-        ]);
-        return redirect('/pinjaman')->with('success', 'peminjaman berhasil ditambahakan');
+            $Detail = DB::table('detail_pinjaman')->insert([
+                'id_inventaris'=> $request-> jenis_product,
+                'jumlah_pinjaman'=> $request-> qty, 
+                'id_peminjaman'=> $dd, 
+            ]);
+
+            // dd($Pinjaman, $Detail);
+            DB::commit();
+            return redirect('/pinjaman')->with('success', 'peminjaman berhasil ditambahakan');
+        }catch(\throwable $e){
+            // dd($e, $request);
+            Alert::error('data gagal ditambahkan');
+            return redirect('/pinjaman');
+        }
+        
+        
+
+       
     }
 
     /**

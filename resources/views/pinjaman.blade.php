@@ -11,7 +11,6 @@
                 <th scope="col">NO</th>
                 <th scope="col">ID-DPJ</th>
                 <th scope="col">ID-INV</th>
-                <th scope="col">Nama-INV</th>
                 <th scope="col">ID-Peminjam</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Tanggal Peminjaman</th>
@@ -27,7 +26,6 @@
                 <th>{{$loop->iteration}}</th>
                 <td>DPJ-{{$view->id_peminjaman}}</td>
                 <td>INV-{{$view->id_inventaris}}</td>
-                <td>{{$nama_inv[0]->nama_inventaris}}</td>
                 <td>{{$view->id_peminjam}}</td>
                 <td>{{$view->jumlah_pinjaman}}</td>
                 <td>{{$view->tanggal_peminjaman}}</td>
