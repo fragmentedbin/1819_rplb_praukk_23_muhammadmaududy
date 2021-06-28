@@ -72,7 +72,7 @@ class RuanganController extends Controller
      */
     public function show(Ruangan $ruangan)
     {
-        
+
     }
 
     /**

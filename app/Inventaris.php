@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Inventaris extends Model
 {
     use SoftDeletes;
-    public $timestamps = false;
-    protected $primaryKey = 'id_inventaris';
     protected $dates = ['deleted_at'];
+    protected $primaryKey = 'id_inventaris';
+    public $timestamps = false;
     protected $fillable = [
         'kode_inventaris', 
         'nama_inventaris', 
